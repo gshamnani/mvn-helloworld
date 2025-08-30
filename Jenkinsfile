@@ -1,21 +1,25 @@
-pipeline{
+pipeline {
     agent any
 
     tools {
-         maven 'maven'
-         jdk 'java'
+        // Reference the Maven installation configured in Global Tool Configuration
+        maven 'Maven 3.9.11' // Use the name you gave your Maven installation
     }
 
-    stages{
-        stage('checkout'){
-            steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/sreenivas449/java-hello-world-with-maven.git']]])
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
             }
         }
-        stage('build'){
-            steps{
-               bat 'mvn package'
+    
+     
+    stage('Test') { 
+            steps {
+                sh 'mvn test' 
             }
         }
     }
 }
+
+
