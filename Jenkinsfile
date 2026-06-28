@@ -11,7 +11,7 @@ pipeline {
             }
             steps {
                 // 1. Checkout the master branch
-                git credentialsId: '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', 
+                git credentialsId: 'secret-token-key', 
                     url: 'https://github.com/gshamnani/mvn-helloworld.git',
                     branch: 'master' // Kept as 'master' since this worked!
                 
